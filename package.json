@@ -6,12 +6,9 @@
   "scripts": {
     "clean": "rimraf ./build/**.*",
     "compile-webpack-config": "tsc --skipLibCheck webpack.config.ts",
-    "build":
-      "npm run clean && npm run compile-webpack-config && NODE_ENV=development webpack",
-    "build-production":
-      "npm run clean && npm run compile-webpack-config && NODE_ENV=production webpack",
-    "dev-server":
-      "npm run compile-webpack-config && NODE_ENV=development webpack-dev-server",
+    "build": "npm run clean && npm run compile-webpack-config && NODE_ENV=development webpack",
+    "build-production": "npm run clean && npm run compile-webpack-config && NODE_ENV=production webpack",
+    "dev-server": "npm run compile-webpack-config && NODE_ENV=development webpack-dev-server",
     "test": "jest",
     "test-watch": "jest --watch",
     "storybook": "start-storybook -p 9001 -c .storybook  -s ./static"
@@ -44,10 +41,20 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "@types/autoprefixer": "^6.7.3",
+    "@types/classnames": "^2.2.3",
+    "@types/prop-types": "^15.5.1",
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
+    "autoprefixer": "^7.2.2",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.28.7",
     "glamor": "^3.0.0-3",
+    "postcss-loader": "^2.0.9",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "style-loader": "^0.19.0",
+    "type-zoo": "^1.0.0"
   }
 }

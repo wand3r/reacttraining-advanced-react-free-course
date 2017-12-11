@@ -1,19 +1,19 @@
-import { resolve } from "path";
-import * as webpack from "webpack";
-import * as HtmlWebpackPlugion from "html-webpack-plugin";
+import { resolve } from "path"
+import webpack from "webpack"
+import HtmlWebpackPlugion from "html-webpack-plugin"
+import autoprefixer from "autoprefixer"
 
-type Environment = "development" | "production";
+type Environment = "development" | "production"
 
 function isEnvironment(arg: any): arg is Environment {
-  return arg == "development" || arg == "production";
+  return arg == "development" || arg == "production"
 }
 
-const environment = process.env.NODE_ENV;
+const environment = process.env.NODE_ENV
 
-if (!isEnvironment(environment))
-  throw new Error("Invalid environment variable");
+if (!isEnvironment(environment)) throw new Error("Invalid environment variable")
 
-console.log(`Running webpack in ${environment} mode`);
+console.log(`Running webpack in ${environment} mode`)
 
 let plugins: webpack.Plugin[] = [
   new webpack.DefinePlugin({
@@ -21,7 +21,7 @@ let plugins: webpack.Plugin[] = [
       NODE_ENV: JSON.stringify(environment),
     },
   }),
-];
+]
 
 if (environment === "development") {
   plugins = [
@@ -31,7 +31,7 @@ if (environment === "development") {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-  ];
+  ]
 }
 
 if (environment === "production") {
@@ -42,7 +42,7 @@ if (environment === "production") {
         warnings: true,
       },
     }),
-  ];
+  ]
 }
 
 const config: webpack.Configuration = {
@@ -57,7 +57,7 @@ const config: webpack.Configuration = {
   devtool: "cheap-module-source-map",
   resolve: {
     modules: ["node_modules", resolve(__dirname, "src")],
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".css"],
   },
   module: {
     rules: [
@@ -65,6 +65,14 @@ const config: webpack.Configuration = {
         test: /\.tsx?$/,
         use: [{ loader: "react-hot-loader/webpack" }, { loader: "ts-loader" }],
         include: resolve(__dirname, "src"),
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "postcss-loader", options: { plugins: [autoprefixer] } },
+        ],
       },
     ],
   },
@@ -80,6 +88,6 @@ const config: webpack.Configuration = {
     },
     contentBase: resolve(__dirname, "static"),
   },
-};
+}
 
-module.exports = config;
+module.exports = config

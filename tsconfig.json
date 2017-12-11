@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es6",
     "jsx": "react",
     "skipLibCheck": true,
     "sourceMap": true,
@@ -12,6 +12,8 @@
     "alwaysStrict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "es2016"]
   }
 }
