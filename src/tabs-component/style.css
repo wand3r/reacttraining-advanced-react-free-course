@@ -1,0 +1,24 @@
+.tabs .tab-panel {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.tabs .tab-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.tabs .tab {
+  box-sizing: border-box;
+  flex-grow: 1;
+  padding: 4px;
+  text-align: center;
+}
+
+.tabs .tab.selected {
+  border-bottom: solid 2px rgb(72, 193, 214);
+}
+
+.tabs .tab.disabled {
+  opacity: 0.2;
+}
