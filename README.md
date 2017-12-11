@@ -8,3 +8,4 @@ Topics:
 
 TODO:
 * add CSSTransition [how to](https://github.com/reactjs/react-transition-group/blob/master/Migration.md)
+* watch last 2 lessons 
