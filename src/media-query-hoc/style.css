@@ -1,0 +1,25 @@
+.responsive-background {
+  position: relative;
+}
+
+.responsive-background img {
+  position: absolute;
+}
+
+.responsive-background img.fade-enter {
+  opacity: 0;
+}
+
+.responsive-background img.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.responsive-background img.fade-exit {
+  opacity: 1;
+}
+
+.responsive-background img.fade-exit-active {
+  opacity: 0;
+  transition: opacity 1s ease;
+}

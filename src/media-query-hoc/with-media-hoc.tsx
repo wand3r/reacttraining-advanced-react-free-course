@@ -6,15 +6,17 @@ type Diff<T extends string, U extends string> = ({ [P in T]: P } &
 
 type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>
 
+export type MediaProp<T> = keyof T | undefined
+
 export const withMedia = <T extends { [p: string]: string }>(media: T) => <
-  P extends { media: Record<keyof T, boolean> }
+  P extends { media: MediaProp<T> }
 >(
   Comp: ComponentType<P>,
 ) => {
   const mediaListener = createMediaQueryListener(media)
   return class WithMediaHOC extends Component<
     Omit<P, "media">,
-    { media: Record<keyof T, boolean> }
+    { media: keyof T | undefined }
   > {
     state = {
       media: mediaListener.getCurrentStatus(),
