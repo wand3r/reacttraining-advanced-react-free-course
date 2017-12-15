@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react"
 import { number, object } from "@storybook/addon-knobs"
 import { ResponsiveBackgroundWithMedia } from "./responsive-background"
 
-storiesOf("Tabs", module).add("ResponsiveBackground", () => (
+storiesOf("ResponsiveBackground", module).add("default", () => (
   <div>
     <ResponsiveBackgroundWithMedia />
   </div>
