@@ -5,6 +5,7 @@ import { Tabs as TabsDeepNested } from "./tabs-deep-nested-version"
 import * as TabsCE from "./tabs-compound-clone-element-version"
 import * as TabsC from "./tabs-compound-context-varsion"
 import { MistletoeIcon, SnowflakeIcon, SnowmanIcon } from "./icons"
+import { TabsControlled } from "./tabs-controlled"
 
 const tabsData: { header: React.ReactNode; panel: React.ReactNode }[] = [
   { header: <SnowflakeIcon />, panel: "panel 1" },
@@ -37,7 +38,7 @@ storiesOf("Tabs", module)
     </TabsCE.Tabs>
   ))
   .add("with compound components using context", () => (
-    <TabsC.Tabs>
+    <TabsC.Tabs defaultSelectedIndex={2}>
       <TabsC.TabList>
         <TabsC.Tab>
           <SnowflakeIcon />
@@ -56,3 +57,4 @@ storiesOf("Tabs", module)
       </TabsC.TabPanels>
     </TabsC.Tabs>
   ))
+  .add("controlled component", () => <TabsControlled />)

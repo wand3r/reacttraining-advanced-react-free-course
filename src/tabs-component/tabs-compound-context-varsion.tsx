@@ -5,27 +5,49 @@ import "./style"
 
 type ValidationMap<T> = { [K in keyof T]: PropTypes.Validator<T> }
 
-type TabsProps = {}
+type TabsProps = {
+  selectedIndex?: number
+  defaultSelectedIndex?: number
+  onSelectedIndexChange?: (tabIndex: number) => void
+}
+
 type TabsState = { selectedIndex: number }
+
 type TabsContext = {
   selectedIndex: number
   onSelectTab: (index: number) => void
 }
+
 export class Tabs extends Component<TabsProps, TabsState> {
   static childContextTypes: ValidationMap<TabsContext> = {
     selectedIndex: PropTypes.number.isRequired,
     onSelectTab: PropTypes.func.isRequired,
   }
+
+  state = {
+    selectedIndex: this.props.defaultSelectedIndex || 0,
+  }
+
+  isControlled = () => this.props.selectedIndex !== undefined
+
   getChildContext = (): TabsContext => ({
-    selectedIndex: this.state.selectedIndex,
+    selectedIndex: this.getSelectedIndex(),
     onSelectTab: this.selectTab,
   })
-  state = {
-    selectedIndex: 0,
-  }
+
+  getSelectedIndex = () =>
+    this.isControlled()
+      ? (this.props.selectedIndex as number)
+      : this.state.selectedIndex
+
   selectTab = (selectedIndex: number) => {
-    this.setState({ selectedIndex })
+    if (!this.isControlled()) {
+      this.setState({ selectedIndex })
+    }
+    const { onSelectedIndexChange } = this.props
+    onSelectedIndexChange && onSelectedIndexChange(selectedIndex)
   }
+
   render() {
     const { children } = this.props
     return <div className="tabs">{children}</div>
