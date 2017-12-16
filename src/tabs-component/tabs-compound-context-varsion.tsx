@@ -57,7 +57,9 @@ export class Tabs extends Component<TabsProps, TabsState> {
 type TabListProps = {
   children: ReactNode
 }
+
 type TabListContext = TabsContext
+
 export const TabList: SFC<TabListProps> = (
   { children },
   { selectedIndex, onSelectTab }: TabListContext,
@@ -71,6 +73,7 @@ export const TabList: SFC<TabListProps> = (
     )}
   </div>
 )
+
 TabList.contextTypes = {
   selectedIndex: PropTypes.number.isRequired,
   onSelectTab: PropTypes.func.isRequired,
@@ -82,6 +85,7 @@ type TabProps = {
   onSelect?: () => void
   children: React.ReactNode
 }
+
 export const Tab = ({
   disabled = false,
   selected = false,
@@ -99,11 +103,14 @@ export const Tab = ({
 type TabPanelsProps = {
   children: ReactNode
 }
+
 type TabPanelsContext = Pick<TabsContext, "selectedIndex">
+
 export const TabPanels: SFC<TabPanelsProps> = (
   { children }: TabPanelsProps,
   { selectedIndex }: TabPanelsContext,
 ) => React.Children.toArray(children)[selectedIndex] as JSX.Element
+
 TabPanels.contextTypes = {
   selectedIndex: PropTypes.number.isRequired,
 } as ValidationMap<TabPanelsContext>
@@ -111,6 +118,7 @@ TabPanels.contextTypes = {
 type TabPanelProps = {
   children: ReactNode
 }
+
 export const TabPanel: SFC<TabPanelProps> = ({ children }) => (
   <div className="tab-panel">{children}</div>
 )

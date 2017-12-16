@@ -4,7 +4,7 @@ Topics:
 * Compound Components using cloneElement
 * Compound Components using Context
 * Higher Order Component
+* Render props
+* Controlled Components
 
-
-TODO:
-* watch last 2 lessons 
+Completed.
